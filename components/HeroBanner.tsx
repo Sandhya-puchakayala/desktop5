@@ -4,13 +4,13 @@ import Image from "next/image";
 const HeroBanner = () => {
   return (
     <section className="w-full px-6 lg:px-12 py-6">
-      <div className="relative rounded-2xl overflow-hidden">
+      <div className="relative">
         <Image
           src="/assets/hero-pets1.png"
           alt="Happy cat and dog"
           width={1200}
           height={450}
-          className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover"
+          className="w-full h-auto rounded-t-[36px]"
           priority
         />
 
