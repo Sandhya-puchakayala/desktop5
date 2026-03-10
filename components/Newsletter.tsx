@@ -2,7 +2,7 @@ import { Apple, Play } from "lucide-react";
 
 const Newsletter = () => {
   return (
-    <section className="px-[35px] py-10">
+    <section className="container mx-auto px-10 py-10">
       <div className="bg-[#7A3B66] rounded-[26px] h-[290px] px-12 flex items-center justify-between">
 
         {/* LEFT */}

@@ -2,8 +2,8 @@ import { ArrowRight } from "lucide-react";
 
 const PawStoryBanner = () => {
   return (
-    <section className="px-4 py-10">
-      <div className="bg-card rounded-2xl h-[350px] max-w-[1350px] mx-auto flex flex-col items-center justify-center text-center px-6">
+    <section className="container mx-auto px-10 py-10">
+      <div className="bg-card rounded-2xl h-[350px] flex flex-col items-center justify-center text-center">
 
         <h2 className="text-4xl sm:text-5xl font-display text-foreground mb-4">
           Every Paw Tells a Story

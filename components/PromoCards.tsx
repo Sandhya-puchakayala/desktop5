@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const PromoCards = () => {
   return (
-    <section className="container mx-auto px-4 py-8">
+    <section className="container mx-auto px-10 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {/* Card 1 */}
@@ -31,7 +31,7 @@ const PromoCards = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="relative rounded-[30px] overflow-hidden min-h-[290px]">
+        <div className="relative rounded-[30px] overflow-hidden min-h-[280px]">
 
           {/* Background Image */}
           <Image
