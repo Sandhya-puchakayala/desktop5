@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const PromoCards = () => {
   return (
-    <section className="container mx-auto px-10 py-8">
+    <section className="w-full px-6 lg:px-12 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {/* Card 1 */}

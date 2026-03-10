@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const HeroBanner = () => {
   return (
-    <section className="container mx-auto px-10 py-6">
+    <section className="w-full px-6 lg:px-12 py-6">
       <div className="relative rounded-2xl overflow-hidden">
         <Image
           src="/assets/hero-pets1.png"
