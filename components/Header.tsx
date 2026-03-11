@@ -12,9 +12,9 @@ const navItems = [
   { label: "BIRDS", hasDropdown: true },
   { label: "FISHES", hasDropdown: true },
   { label: "SERVICES", hasDropdown: true },
-  { label: "PAWSCRIPTION", hasDropdown: false },
-  { label: "PAWSSURANCE", hasDropdown: false },
-  { label: "PETFLUENCER", hasDropdown: false },
+  { label: "PAWSCRIPTION", hasDropdown: false, href: "/pawscription" },
+  { label: "PAWSSURANCE", hasDropdown: false, href: "/pawssurance" },
+  { label: "PETFLUENCER", hasDropdown: false, href: "/petfluencer" },
 ];
 
 const dogsDropdownData = [
@@ -208,12 +208,22 @@ const Header = () => {
                   }
                 }}
               >
-                <button 
-                  className="flex items-center gap-1 text-base font-semibold tracking-wide text-gray-800 hover:text-[#8B1E4F] transition-colors"
-                >
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown className="h-4 w-4 mt-[1px]" />}
-                </button>
+                {item.href ? (
+                  <Link 
+                    href={item.href}
+                    className="flex items-center gap-1 text-base font-semibold tracking-wide text-gray-800 hover:text-[#8B1E4F] transition-colors"
+                  >
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown className="h-4 w-4 mt-[1px]" />}
+                  </Link>
+                ) : (
+                  <button 
+                    className="flex items-center gap-1 text-base font-semibold tracking-wide text-gray-800 hover:text-[#8B1E4F] transition-colors"
+                  >
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown className="h-4 w-4 mt-[1px]" />}
+                  </button>
+                )}
 
                 {/* Specific Fish Dropdown anchored to this LI */}
                 {item.label === "FISHES" && activeDropdown === "FISHES" && (
@@ -295,10 +305,20 @@ const Header = () => {
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <button className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors">
-                    {item.label}
-                    {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
-                  </button>
+                  {item.href ? (
+                    <Link 
+                      href={item.href}
+                      className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                    >
+                      {item.label}
+                      {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
+                    </Link>
+                  ) : (
+                    <button className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors">
+                      {item.label}
+                      {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
