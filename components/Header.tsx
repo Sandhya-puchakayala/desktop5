@@ -1,8 +1,9 @@
 "use client";
 
-import { Search, Heart, ShoppingCart, User, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Heart, ShoppingCart, User, Menu, X, ChevronDown, Home, Monitor, Footprints, Scissors, Building, HandHeart, Sprout } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import LoginPopup from "./LoginPopup";
 
 const navItems = [
@@ -10,25 +11,110 @@ const navItems = [
   { label: "CATS", hasDropdown: true },
   { label: "BIRDS", hasDropdown: true },
   { label: "FISHES", hasDropdown: true },
-  { label: "SERVICES", hasDropdown: false },
+  { label: "SERVICES", hasDropdown: true },
   { label: "PAWSCRIPTION", hasDropdown: false },
   { label: "PAWSSURANCE", hasDropdown: false },
   { label: "PETFLUENCER", hasDropdown: false },
 ];
 
+const dogsDropdownData = [
+  {
+    title: "FOOD",
+    items: ["Puppy Cornor", "Dry Food", "Wet Food", "Vitamins & Supplements", "Prescription Diet"],
+  },
+  {
+    title: "TREATS & CHEWS",
+    items: ["Biscuits & Cookies", "Bones & Chews", "Dental Treats", "Jerky Treats", "Training Treats"],
+  },
+  {
+    title: "HEALTH & WELLNESS",
+    items: ["Flea & Ticks", "Grooming Supplies", "Training, Cleaning & Waste Disposals", "Vitamins & Supplements", "Other Health Care Aids"],
+  },
+  {
+    title: "ACCESSORIES",
+    items: ["Collars, Leashes & Harness", "Bowls & Feeders", "Toys", "Clothes & Accessories", "Bedding & Travel Supplies"],
+  },
+];
+
+const catsDropdownData = [
+  {
+    title: "FOOD & TREATS",
+    items: ["Kitten Corner", "Dry Food", "Wet Food", "Kitten Food", "Treats", "Prescription Diet"],
+  },
+  {
+    title: "LITTER SUPPLIES",
+    items: ["Litter", "Litter Boxes & Toilets", "Waste Disposals", "Cleaning & Deodorizers"],
+  },
+  {
+    title: "HEALTH & WELLNESS",
+    items: ["Fleas & Ticks", "Grooming Supplies", "Health Care Aids"],
+  },
+  {
+    title: "ACCESSORIES",
+    items: ["Toys", "Bowls & Feeders", "Collars, Leashes & Harnesses", "Beds, Mats & Tents", "Carrier & Travel Supplies"],
+  },
+];
+
+const birdsDropdownData = [
+  {
+    title: "FOOD & FEEDING",
+    items: ["Food", "Treats", "Feeders & Waterers"],
+  },
+  {
+    title: "CAGES & ACCESSORIES",
+    items: ["Cages", "Litter & Liners", "Cleanup & Odour Control", "Cage Covers"],
+  },
+  {
+    title: "PERCHES & TOYS",
+    items: ["Perches", "Swings", "Playstands", "Toys"],
+  },
+  {
+    title: "HEALTH & GROOMING",
+    items: ["Grooming & Bathing", "Health & Wellness"],
+  },
+];
+
+const fishesDropdownData = [
+  "FILTER & MEDIA", "ACCESSORIES", "CO2", "SOIL & SUBSTRATES", "TREATMENT", "FOOD", "LIGHTS", "CHILLERS & HEATERS", "FERTILIZERS & ADDITIVES", "LAYOUT MATERIALS", "PUMPS", "MARINE SUPPLIES", "SHRIMP PRODUCTS", "AQUARIUM TANKS", "LIVE FISHES", "Plants",
+];
+
+const servicesDropdownData = [
+  { label: "Dog Training At Home", icon: Home },
+  { label: "Dog Training Online", icon: Monitor },
+  { label: "Dog Walking", icon: Footprints },
+  { label: "Dog Grooming", icon: Scissors },
+  { label: "Dog Boarding", icon: Building },
+  { label: "Dog Sitting", icon: HandHeart },
+  { label: "Punganur Cow", icon: Sprout },
+];
+
+const dropdownDataMap: Record<string, {title: string, items: string[]}[]> = {
+  DOGS: dogsDropdownData,
+  CATS: catsDropdownData,
+  BIRDS: birdsDropdownData,
+};
+
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  // Close dropdown when interacting outside (simplified handling)
+  const toggleDropdown = (label: string) => {
+    setActiveDropdown((prev) => (prev === label ? null : label));
+  };
 
   return (
-    <header className="bg-background border-b border-border">
+    <header className="bg-background border-b border-border relative">
       {/* Top Bar */}
       <div
         className="w-full px-10 py-3 text-sm relative"
         style={{ backgroundColor: "#52002B", color: "#FFFFFF" }}
       >
         <div className="w-full h-full flex items-center justify-between font-medium text-[15px]">
-          <span className="cursor-pointer hover:text-gray-200 transition-colors">Become a Vendor</span>
+          <Link href="/become-vendor" className="cursor-pointer hover:text-gray-200 transition-colors">
+            Become a Vendor
+          </Link>
           <span className="cursor-pointer hover:text-gray-200 transition-colors">Get a Franchise</span>
         </div>
 
@@ -50,13 +136,15 @@ const Header = () => {
       <div className="w-full px-10 py-4 flex items-center justify-between border-b border-gray-200">
 
         {/* Logo */}
-        <Image
-          src="/images/logos/img_image_3.png"
-          alt="Petoty Logo"
-          width={160}
-          height={70}
-          className="object-contain"
-        />
+        <Link href="/">
+          <Image
+            src="/images/logos/img_image_3.png"
+            alt="Petoty Logo"
+            width={160}
+            height={70}
+            className="object-contain cursor-pointer"
+          />
+        </Link>
 
         {/* Search Bar */}
         <div className="hidden md:flex flex-1 max-w-[650px] mx-6">
@@ -81,7 +169,10 @@ const Header = () => {
           </button>
 
           {/* Cart */}
-          <button className="hidden sm:flex items-center gap-3 text-lg font-semibold text-black hover:text-[#8B1E4F] transition">
+          <button 
+            onClick={() => setIsLoginOpen(true)}
+            className="hidden sm:flex items-center gap-3 text-lg font-semibold text-black hover:text-[#8B1E4F] transition"
+          >
             <ShoppingCart className="h-7 w-7 text-[#8B1E4F]" />
             <span>Cart</span>
           </button>
@@ -99,19 +190,94 @@ const Header = () => {
 
       </div>
       {/* Desktop nav */}
-      <nav className="hidden md:block border-t border-border">
+      <nav 
+        className="hidden md:block border-t border-border"
+        onMouseLeave={() => setActiveDropdown(null)}
+      >
         <div className="container mx-auto px-4">
           <ul className="flex items-center justify-center gap-12 xl:gap-16 py-5">
             {navItems.map((item) => (
-              <li key={item.label}>
-                <button className="flex items-center gap-1 text-base font-semibold tracking-wide text-gray-800 hover:text-[#8B1E4F] transition-colors">
+              <li 
+                key={item.label} 
+                className="relative"
+                onMouseEnter={() => {
+                  if (item.hasDropdown) {
+                    setActiveDropdown(item.label);
+                  } else {
+                    setActiveDropdown(null);
+                  }
+                }}
+              >
+                <button 
+                  className="flex items-center gap-1 text-base font-semibold tracking-wide text-gray-800 hover:text-[#8B1E4F] transition-colors"
+                >
                   {item.label}
                   {item.hasDropdown && <ChevronDown className="h-4 w-4 mt-[1px]" />}
                 </button>
+
+                {/* Specific Fish Dropdown anchored to this LI */}
+                {item.label === "FISHES" && activeDropdown === "FISHES" && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-[20px] w-[260px] z-50 text-left">
+                    <div className="bg-[#FCFAFA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100 py-6 px-8 rounded-2xl">
+                      <ul className="space-y-4">
+                        {fishesDropdownData.map((link, linkIdx) => (
+                          <li key={linkIdx}>
+                            <a href="#" className="text-[14px] font-medium text-[#8B1E4F] hover:text-[#52002B] tracking-wide transition-colors">
+                              {link}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
         </div>
+
+        {/* Mega Menu Dropdown */}
+        {(activeDropdown === "DOGS" || activeDropdown === "CATS" || activeDropdown === "BIRDS") && (
+          <div className="absolute left-10 right-10 mx-auto max-w-[1400px] bg-[#FCFAFA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100/60 rounded-b-3xl z-50 pt-10 pb-12">
+            <div className="container mx-auto px-10 flex justify-center gap-16 xl:gap-24">
+              {dropdownDataMap[activeDropdown].map((col, idx) => (
+                <div key={idx} className="flex-1 max-w-[280px]">
+                  <h3 className="text-[13px] font-bold text-[#8B1E4F] mb-6 tracking-wide uppercase">{col.title}</h3>
+                  <ul className="space-y-5">
+                    {col.items.map((link, linkIdx) => (
+                      <li key={linkIdx}>
+                        <a href="#" className="text-[14px] font-medium text-[#C4467E] hover:text-[#52002B] transition-colors">
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Specific Services Mega Menu Dropdown */}
+        {activeDropdown === "SERVICES" && (
+          <div className="absolute left-10 right-10 mx-auto max-w-[1200px] bg-[#FCFAFA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100/60 rounded-b-3xl z-50 pt-8 pb-10">
+            <div className="container mx-auto px-10 flex justify-center items-start gap-8 xl:gap-14">
+              {servicesDropdownData.map((service, idx) => {
+                const Icon = service.icon;
+                return (
+                  <a key={idx} href="#" className="flex flex-col items-center justify-start text-center group w-[100px]">
+                    <div className="mb-3 text-[#52002B] group-hover:text-[#8B1E4F] group-hover:scale-110 transition-all duration-300">
+                      <Icon className="w-[42px] h-[42px] mx-auto stroke-[1.5]" />
+                    </div>
+                    <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-[#8B1E4F] transition-colors leading-snug">
+                      {service.label}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Mobile nav */}
@@ -140,7 +306,10 @@ const Header = () => {
               <button className="flex items-center gap-1.5 text-sm font-medium">
                 <Heart className="h-5 w-5" /> Wishlist
               </button>
-              <button className="flex items-center gap-1.5 text-sm font-medium">
+              <button 
+                onClick={() => setIsLoginOpen(true)}
+                className="flex items-center gap-1.5 text-sm font-medium"
+              >
                 <ShoppingCart className="h-5 w-5" /> Cart
               </button>
             </div>

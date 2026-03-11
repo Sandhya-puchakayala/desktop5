@@ -1,34 +1,46 @@
 import { Twitter, Facebook, Youtube, Instagram, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   const columns = [
     {
       title: "Get to Know Us",
-      links: ["About Us", "News & Blog", "Careers", "Investors", "Contact Us"],
+      links: [
+        { label: "About Us", href: "#" },
+        { label: "News & Blog", href: "#" },
+        { label: "Careers", href: "#" },
+        { label: "Investors", href: "#" },
+        { label: "Contact Us", href: "#" },
+      ],
     },
     {
       title: "Customer Service",
       links: [
-        "Help Center",
-        "FAQ's",
-        "Franchise",
-        "Feedback",
-        "Become a Vendor",
-        "Payment Method",
+        { label: "Help Center", href: "#" },
+        { label: "FAQ's", href: "#" },
+        { label: "Franchise", href: "#" },
+        { label: "Feedback", href: "#" },
+        { label: "Become a Vendor", href: "/become-vendor" },
+        { label: "Payment Method", href: "#" },
       ],
     },
     {
       title: "Legal",
-      links: ["Privacy Policy", "Terms of Use", "Legal", "Sitemap"],
+      links: [
+        { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms of Use", href: "/terms-of-use" },
+        { label: "Legal", href: "/legal" },
+        { label: "Sitemap", href: "/sitemap" },
+      ],
     },
     {
       title: "Orders & Returns",
       links: [
-        "Track Order",
-        "Shipping & Delivery",
-        "Return & Exchange",
-        "Price Match Guarantee",
+        { label: "Track Order", href: "#" },
+        { label: "Shipping & Delivery", href: "#" },
+        { label: "Return & Exchange", href: "#" },
+        { label: "Price Match Guarantee", href: "#" },
       ],
     },
   ];
@@ -81,13 +93,12 @@ const Footer = () => {
 
                 <ul className="space-y-3">
                   {col.links.map((link) => (
-                    <li key={link}>
-
-                      <a href="#"
+                    <li key={link.label}>
+                      <Link href={link.href}
                         className="text-base text-muted-foreground hover:text-primary transition"
                       >
-                        {link}
-                      </a>
+                        {link.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
