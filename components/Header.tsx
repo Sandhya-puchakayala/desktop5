@@ -3,6 +3,7 @@
 import { Search, Heart, ShoppingCart, User, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import LoginPopup from "./LoginPopup";
 
 const navItems = [
   { label: "DOGS", hasDropdown: true },
@@ -17,6 +18,7 @@ const navItems = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
     <header className="bg-background border-b border-border">
@@ -85,8 +87,11 @@ const Header = () => {
           </button>
 
           {/* Login */}
-          <button className="flex items-center gap-3 text-lg font-semibold bg-gray-200 px-6 py-3 rounded-full hover:bg-[#8B1E4F] hover:text-white transition">
-            <User className="h-7 w-7 text-[#8B1E4F]" />
+          <button 
+             onClick={() => setIsLoginOpen(true)}
+             className="flex items-center gap-3 text-lg font-semibold bg-gray-200 px-6 py-3 rounded-full hover:bg-[#8B1E4F] hover:text-white transition group"
+          >
+            <User className="h-7 w-7 text-[#8B1E4F] group-hover:text-white transition-colors" />
             <span>Login/Sign Up</span>
           </button>
 
@@ -142,6 +147,9 @@ const Header = () => {
           </div>
         </nav>
       )}
+      
+      {/* Login Popup */}
+      <LoginPopup isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </header>
   );
 };
