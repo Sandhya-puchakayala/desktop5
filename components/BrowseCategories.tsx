@@ -23,7 +23,8 @@ const popularCategories = [
 ];
 
 const BrowseCategories = () => {
-  const [activeTab, setActiveTab] = useState("Dogs");
+  const [browseActiveTab, setBrowseActiveTab] = useState("Dogs");
+  const [popularActiveTab, setPopularActiveTab] = useState("Dogs");
 
   return (
     <>
@@ -39,8 +40,8 @@ const BrowseCategories = () => {
             {tabs.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 rounded-full text-base font-semibold transition ${activeTab === tab
+                onClick={() => setBrowseActiveTab(tab)}
+                className={`px-6 py-3 rounded-full text-base font-semibold transition ${browseActiveTab === tab
                   ? "bg-black text-white"
                   : "bg-gray-200 text-gray-700"
                   }`}
@@ -88,8 +89,8 @@ const BrowseCategories = () => {
             {tabs.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-3 rounded-full text-base font-semibold transition ${activeTab === tab
+                onClick={() => setPopularActiveTab(tab)}
+                className={`px-6 py-3 rounded-full text-base font-semibold transition ${popularActiveTab === tab
                   ? "bg-black text-white"
                   : "bg-gray-200 text-gray-700"
                   }`}

@@ -22,20 +22,23 @@ const Header = () => {
     <header className="bg-background border-b border-border">
       {/* Top Bar */}
       <div
-        className="w-full px-6 py-4 text-sm relative"
+        className="w-full px-10 py-3 text-sm relative"
         style={{ backgroundColor: "#52002B", color: "#FFFFFF" }}
       >
-        <div className="container mx-auto flex items-center justify-between">
-          {/* Center Icons */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[-3px] z-10">
-            <Image
-              src="/images/logos/img_frame_427321168.png"
-              alt="Pets Icon"
-              width={80}
-              height={40}
-              className="object-contain"
-            />
-          </div>
+        <div className="w-full h-full flex items-center justify-between font-medium text-[15px]">
+          <span className="cursor-pointer hover:text-gray-200 transition-colors">Become a Vendor</span>
+          <span className="cursor-pointer hover:text-gray-200 transition-colors">Get a Franchise</span>
+        </div>
+
+        {/* Center Icons */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[-3px] z-10 pointer-events-none">
+          <Image
+            src="/images/logos/img_frame_427321168.png"
+            alt="Pets Icon"
+            width={80}
+            height={40}
+            className="object-contain"
+          />
         </div>
       </div>
 
