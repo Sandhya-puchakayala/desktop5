@@ -115,7 +115,9 @@ const Header = () => {
           <Link href="/become-vendor" className="cursor-pointer hover:text-gray-200 transition-colors">
             Become a Vendor
           </Link>
-          <span className="cursor-pointer hover:text-gray-200 transition-colors">Get a Franchise</span>
+          <Link href="/get-franchise" className="cursor-pointer hover:text-gray-200 transition-colors">
+            Get a Franchise
+          </Link>
         </div>
 
         {/* Center Icons */}

@@ -7,7 +7,7 @@ const Footer = () => {
     {
       title: "Get to Know Us",
       links: [
-        { label: "About Us", href: "#" },
+        { label: "About Us", href: "/about-us" },
         { label: "News & Blog", href: "#" },
         { label: "Careers", href: "#" },
         { label: "Investors", href: "#" },
