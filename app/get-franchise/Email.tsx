@@ -9,7 +9,7 @@ export default function Email() {
       <div className="w-full max-w-5xl px-4 flex justify-center">
         
         <img
-          src="/images/email.png"
+          src="/email.png"
           alt="Email Newsletter"
           className="w-full h-auto object-contain"
         />
