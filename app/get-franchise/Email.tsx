@@ -6,16 +6,18 @@ export default function Email() {
 
       {/* IMAGE CONTAINER */}
       {/* FIXED: Changed w-5xl to max-w-5xl. Added w-full so it responds to mobile screens perfectly. */}
-      <div className="w-full max-w-5xl px-4 flex justify-center">
-        
+
+      {/* <div className="w-full max-w-5xl px-4 flex justify-center"> */}
+      <div className="w-full px-6 md:px-12 flex justify-center">
+
         <img
           src="/images/email.png"
           alt="Email Newsletter"
           className="w-full h-auto object-contain"
         />
-        
+
       </div>
-      
+
     </section>
   );
 }

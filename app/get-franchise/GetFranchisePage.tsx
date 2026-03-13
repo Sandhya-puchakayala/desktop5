@@ -9,6 +9,7 @@ import Franchise from './Franchise'
 import What from './What'
 import CTA from './CTA'
 import Email from './Email'
+import Newsletter from '@/components/Newsletter'
 import Footer from '@/components/Footer'
 
 export default function GetFranchisePage() {
@@ -20,11 +21,12 @@ export default function GetFranchisePage() {
       <FranchiseForm />
       <Why />
       <Ecosystem />
-      <Journey /> 
+      <Journey />
       <Franchise />
       <What />
       <CTA />
       <Email />
+      <Newsletter />
       <Footer />
     </main>
   );
