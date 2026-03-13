@@ -6,10 +6,11 @@ import Footer from '@/components/Footer'
 
 export default function AboutusPage() {
   return (
-    <main className="flex flex-col gap-12 md:gap-12 pb-12">
+    // <main className="flex flex-col gap-12 md:gap-12 pb-12">
+    <main className="flex flex-col gap-0 pb-12">
       <Header />
       <About />
-      <Newsletter/>
+      <Newsletter />
       <Footer />
     </main>
   );

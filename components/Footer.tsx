@@ -10,19 +10,19 @@ const Footer = () => {
         { label: "About Us", href: "/about-us" },
         { label: "News & Blog", href: "#" },
         { label: "Careers", href: "#" },
-        { label: "Investors", href: "#" },
+        { label: "Investors", href: "/investors" },
         { label: "Contact Us", href: "#" },
       ],
     },
     {
       title: "Customer Service",
       links: [
-        { label: "Help Center", href: "#" },
-        { label: "FAQ's", href: "#" },
-        { label: "Franchise", href: "#" },
-        { label: "Feedback", href: "#" },
+        { label: "Help Center", href: "/help-center" },
+        { label: "FAQ's", href: "/faq" },
+        { label: "Franchise", href: "/get-franchise" },
+        { label: "Feedback", href: "/feedback" },
         { label: "Become a Vendor", href: "/become-vendor" },
-        { label: "Payment Method", href: "#" },
+        { label: "Payment Method", href: "/payment-methods" },
       ],
     },
     {
@@ -38,9 +38,9 @@ const Footer = () => {
       title: "Orders & Returns",
       links: [
         { label: "Track Order", href: "#" },
-        { label: "Shipping & Delivery", href: "#" },
-        { label: "Return & Exchange", href: "#" },
-        { label: "Price Match Guarantee", href: "#" },
+        { label: "Shipping & Delivery", href: "/shipping-delivery" },
+        { label: "Return & Exchange", href: "/return-exchange" },
+        { label: "Price Match Guarantee", href: "/price-match-guarantee" },
       ],
     },
   ];

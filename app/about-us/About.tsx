@@ -15,14 +15,13 @@ const stagger = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 pb-32">
+    <div className="min-h-screen bg-white font-sans text-gray-900 pb-0">
 
       {/* 1. HERO IMAGE & INTRO */}
       {/* <section className="w-full py-24 mb-0 flex flex-col items-center text-center"> */}
       <section className="w-full pt-6 pb-16 flex flex-col items-center text-center">
         {/* Full width hero image */}
-        {/* <div className="w-full h-[350px] md:h-[500px] lg:h-[600px] relative px-4 md:px-8 pt-6 flex justify-center"> */}
-        {/* <div className="w-full h-[350px] md:h-[500px] lg:h-[600px] relative px-4 md:px-8 pt-0 flex justify-center"> */}
+
         <div className="w-full h-[350px] md:h-[500px] lg:h-[600px] relative px-2 md:px-4 pt-0 flex justify-center">
           <img
             src="/images/Family-child.png"
@@ -239,7 +238,8 @@ export default function AboutPage() {
       </section>
 
       {/* 7. HOW WE WORK / FINAL CARDS */}
-      <section className="py-32 bg-white flex flex-col items-center w-full">
+      {/* <section className="py-32 bg-white flex flex-col items-center w-full"> */}
+      <section className="pt-32 pb-8 bg-white flex flex-col items-center w-full">
         <motion.div
           initial="hidden"
           whileInView="visible"
