@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Heart, ShoppingCart, User, Menu, X, ChevronDown, Home, Monitor, Footprints, Scissors, Building, HandHeart, Sprout } from "lucide-react";
+import { Search, Heart, ShoppingCart, User, Menu, X, ChevronDown, Dumbbell, Footprints, Scissors, Building2, HandHeart, Stethoscope } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -78,15 +78,27 @@ const fishesDropdownData = [
   "FILTER & MEDIA", "ACCESSORIES", "CO2", "SOIL & SUBSTRATES", "TREATMENT", "FOOD", "LIGHTS", "CHILLERS & HEATERS", "FERTILIZERS & ADDITIVES", "LAYOUT MATERIALS", "PUMPS", "MARINE SUPPLIES", "SHRIMP PRODUCTS", "AQUARIUM TANKS", "LIVE FISHES", "Plants",
 ];
 
-const servicesDropdownData = [
-  { label: "Dog Training At Home", icon: Home },
-  { label: "Dog Training Online", icon: Monitor },
-  { label: "Dog Walking", icon: Footprints },
-  { label: "Dog Grooming", icon: Scissors },
-  { label: "Dog Boarding", icon: Building },
-  { label: "Dog Sitting", icon: HandHeart },
-  { label: "Punganur Cow", icon: Sprout },
-];
+type ServiceItem = { label: string; icon: React.ElementType };
+
+const servicesByPet: Record<string, ServiceItem[]> = {
+  Dog: [
+    { label: "Dog Training",  icon: Dumbbell },
+    { label: "Dog Walking",   icon: Footprints },
+    { label: "Pet Grooming", icon: Scissors },
+    { label: "Pet Boarding", icon: Building2 },
+    { label: "Pet Sitting",  icon: HandHeart },
+    { label: "Vet@home",     icon: Stethoscope },
+  ],
+  Cat: [
+    { label: "Pet Grooming", icon: Scissors },
+    { label: "Pet Boarding", icon: Building2 },
+    { label: "Pet Sitting",  icon: HandHeart },
+    { label: "Vet@home",     icon: Stethoscope },
+  ],
+};
+
+const petTabs = ["Dog", "Cat"] as const;
+type PetTab = typeof petTabs[number];
 
 const dropdownDataMap: Record<string, {title: string, items: string[]}[]> = {
   DOGS: dogsDropdownData,
@@ -98,6 +110,8 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeServicePet, setActiveServicePet] = useState<PetTab>("Dog");
+  const [selectedService, setSelectedService] = useState<string | null>(null);
 
   // Close dropdown when interacting outside (simplified handling)
   const toggleDropdown = (label: string) => {
@@ -270,26 +284,100 @@ const Header = () => {
           </div>
         )}
 
-        {/* Specific Services Mega Menu Dropdown */}
+        {/* Two-Level Services Dropdown */}
         {activeDropdown === "SERVICES" && (
-          <div className="absolute left-10 right-10 mx-auto max-w-[1200px] bg-[#FCFAFA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100/60 rounded-b-3xl z-50 pt-8 pb-10">
-            <div className="container mx-auto px-10 flex justify-center items-start gap-8 xl:gap-14">
-              {servicesDropdownData.map((service, idx) => {
-                const Icon = service.icon;
-                return (
-                  <a key={idx} href="#" className="flex flex-col items-center justify-start text-center group w-[100px]">
-                    <div className="mb-3 text-[#52002B] group-hover:text-[#8B1E4F] group-hover:scale-110 transition-all duration-300">
-                      <Icon className="w-[42px] h-[42px] mx-auto stroke-[1.5]" />
-                    </div>
-                    <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-[#8B1E4F] transition-colors leading-snug">
-                      {service.label}
-                    </span>
-                  </a>
-                );
-              })}
+          <div className="absolute left-10 right-10 mx-auto max-w-[1200px] bg-[#FCFAFA] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-gray-100/60 rounded-b-3xl z-50 py-0 overflow-hidden">
+            <div className="flex">
+
+              {/* LEFT PANEL — Pet Type Tabs */}
+              <div className="flex flex-col border-r border-gray-200 bg-white min-w-[160px] py-4">
+                {petTabs.map((pet) => (
+                  <button
+                    key={pet}
+                    onMouseEnter={() => setActiveServicePet(pet)}
+                    onClick={() => { setActiveServicePet(pet); setSelectedService(null); }}
+                    className={`flex items-center gap-3 px-6 py-4 text-[14px] font-semibold text-left transition-colors ${
+                      activeServicePet === pet
+                        ? "text-[#8B1E4F] bg-pink-50 border-r-2 border-[#8B1E4F]"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-[#8B1E4F]"
+                    }`}
+                  >
+                    <span className="text-lg">{pet === "Dog" ? "🐶" : "🐱"}</span>
+                    {pet}
+                  </button>
+                ))}
+              </div>
+
+              {/* RIGHT PANEL — Services Grid with Icons + Conditional View Package */}
+              <div className="flex-1 px-10 py-6 flex flex-col justify-between">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">
+                    {activeServicePet} Services
+                  </p>
+                  <div className="flex flex-wrap gap-8">
+                    {servicesByPet[activeServicePet].map((service, idx) => {
+                      const Icon = service.icon;
+                      const isSelected = selectedService === service.label;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedService(service.label)}
+                          className="flex flex-col items-center gap-2 group w-[80px] text-center focus:outline-none"
+                        >
+                          <div
+                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 group-hover:scale-110 ${
+                              isSelected
+                                ? "bg-[#8B1E4F] text-white scale-110 shadow-md"
+                                : "bg-pink-50 text-[#8B1E4F] group-hover:bg-[#f0d5e3]"
+                            }`}
+                          >
+                            <Icon className="w-6 h-6 stroke-[1.8]" />
+                          </div>
+                          <span
+                            className={`text-[12.5px] font-semibold leading-snug transition-colors ${
+                              isSelected
+                                ? "text-[#52002B]"
+                                : "text-gray-600 group-hover:text-[#8B1E4F]"
+                            }`}
+                          >
+                            {service.label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* View Package CTA — shown only after a service is selected */}
+                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between min-h-[52px]">
+                  {selectedService ? (
+                    <>
+                      <p className="text-[12px] text-gray-500">
+                        Selected: <span className="font-bold text-[#52002B]">{selectedService}</span>
+                      </p>
+                      <Link
+                        href={`/services/book?service=${encodeURIComponent(selectedService)}&pet=${activeServicePet}`}
+                        onClick={() => { setActiveDropdown(null); setSelectedService(null); }}
+                        className="inline-flex items-center gap-2 bg-[#8B1E4F] hover:bg-[#52002B] text-white text-[13px] font-bold px-6 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105"
+                      >
+                        View Package
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </>
+                  ) : (
+                    <p className="text-[12px] text-gray-400 italic">
+                      👆 Click a service to see packages
+                    </p>
+                  )}
+                </div>
+              </div>
+
             </div>
           </div>
         )}
+
       </nav>
 
       {/* Mobile nav */}
