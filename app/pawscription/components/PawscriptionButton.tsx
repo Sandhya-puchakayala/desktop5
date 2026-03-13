@@ -1,4 +1,11 @@
+"use client";
+
+import { useState } from "react";
+import LoginPopup from "@/components/LoginPopup";
+
 export default function PawscriptionButton() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   return (
     // The main wrapper with a clean white background
     <section className="bg-white w-full flex flex-col">
@@ -19,7 +26,10 @@ export default function PawscriptionButton() {
         </p>
         <br/>
         <div className="mt-10">
-          <button className="px-16 py-8 text-md font-bold text-white bg-[#8a1551] hover:from-purple-700 hover:to-purple-800 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center mx-auto min-h-[60px] min-w-[200px]">
+          <button 
+            onClick={() => setIsLoginOpen(true)}
+            className="px-16 py-8 text-md font-bold text-white bg-[#8a1551] hover:from-purple-700 hover:to-purple-800 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center mx-auto min-h-[60px] min-w-[200px]"
+          >
             Start My Pawscription
           </button>
         </div>
@@ -38,6 +48,8 @@ export default function PawscriptionButton() {
         </div>
       </div>
  
+      {/* Login Popup */}
+      <LoginPopup isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </section>
 
   );

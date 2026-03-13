@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
+import LoginPopup from '@/components/LoginPopup';
 
 interface ProcessStep {
   id: number;
@@ -30,6 +31,7 @@ interface CategoryItem {
 }
 
 export default function SellerLandingPage() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [processSteps, setProcessSteps] = useState<ProcessStep[]>([])
   const [sellerCategories, setSellerCategories] = useState<SellerCategory[]>([])
   const [statistics, setStatistics] = useState<Statistic[]>([])
@@ -202,7 +204,7 @@ export default function SellerLandingPage() {
               </p>
 
               <button
-                onClick={handleStartSelling}
+                onClick={() => setIsLoginOpen(true)}
                 className="bg-[#8B1E4F] text-white text-xl lg:text-2xl font-semibold px-14 py-5 rounded-[16px] shadow-[0_6px_12px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_16px_rgba(0,0,0,0.2)] hover:bg-[#7A0A50] transition-all duration-300 ease-in-out w-fit"
               >
                 Start Selling
@@ -745,6 +747,7 @@ export default function SellerLandingPage() {
 
       {/* Footer */}
       <Footer />
+      <LoginPopup isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </main>
   )
 }
