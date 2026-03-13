@@ -109,12 +109,12 @@ export default function AboutPage() {
                 desc: "Get personalised guidance on your pet's health, nutrition, behaviour, and daily care through trusted home-visit consultants. Professional support, tailored to your pet's unique needs.",
               },
               {
-                img: "/images/Pet-care-2.png",
+                img: "/images/pet-care-2.png",
                 title: "Pawsurance – Smart Pet Insurance",
                 desc: "Protect your pet with flexible insurance plans covering medical emergencies, treatments, and preventive care—so you can focus on love, not expenses.",
               },
               {
-                img: "/images/Pet-care-3.png",
+                img: "/images/pet-care-3.png",
                 title: "Pet Services & Marketplace",
                 desc: "From grooming and training to quality food, accessories, and healthcare products—Petoty connects pet parents with trusted services and brands, all in one place.",
               },

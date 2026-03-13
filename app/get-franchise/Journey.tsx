@@ -13,14 +13,14 @@ export default function Hero() {
           
           {/* Top Right Paw */}
           <img 
-            src="/images/Rectangle 189.png" 
+            src="/images/Rectangle-189.png" 
             alt="Decorative Paw" 
             className="absolute -top-6 -right-2 md:-right-6 w-6 h-6 md:w-8 md:h-8 object-contain z-0 pointer-events-none"
           />
 
           {/* Bottom Left Paw */}
           <img 
-            src="/images/Rectangle 189.png" 
+            src="/images/Rectangle-189.png" 
             alt="Decorative Paw" 
             className="absolute -bottom-4 -left-4 md:-left-8 w-6 h-6 md:w-8 md:h-8 object-contain z-0 pointer-events-none"
           />
